@@ -11,6 +11,7 @@ from .dataset_wrappers import MultiImageMixDataset
 from .decathlon import DecathlonDataset
 from .drive import DRIVEDataset
 from .dsdl import DSDLSegDataset
+from .cag import CoronaryDataset
 from .hrf import HRFDataset
 from .hsi_drive import HSIDrive20Dataset
 from .isaid import iSAIDDataset
@@ -43,7 +44,7 @@ from .voc import PascalVOCDataset
 
 # yapf: enable
 __all__ = [
-    'BaseSegDataset', 'BioMedical3DRandomCrop', 'BioMedical3DRandomFlip',
+    'BaseSegDataset', 'CoronaryDataset', 'BioMedical3DRandomCrop', 'BioMedical3DRandomFlip',
     'CityscapesDataset', 'PascalVOCDataset', 'ADE20KDataset',
     'PascalContextDataset', 'PascalContextDataset59', 'ChaseDB1Dataset',
     'DRIVEDataset', 'HRFDataset', 'STAREDataset', 'DarkZurichDataset',

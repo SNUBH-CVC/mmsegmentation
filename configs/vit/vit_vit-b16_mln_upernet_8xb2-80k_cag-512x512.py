@@ -1,15 +1,18 @@
 _base_ = [
     '../_base_/models/upernet_vit-b16_ln_mln.py',
-    '../_base_/datasets/ade20k.py', '../_base_/default_runtime.py',
+    '../_base_/datasets/cag.py', '../_base_/default_runtime.py',
     '../_base_/schedules/schedule_80k.py'
 ]
+
+model_wrapper_cfg=dict(
+    type='MMDistributedDataParallel', find_unused_parameters=True)
+
 crop_size = (512, 512)
 data_preprocessor = dict(size=crop_size)
+
 model = dict(
-    data_preprocessor=data_preprocessor,
-    pretrained='pretrain/vit_base_patch16_224.pth',
-    decode_head=dict(num_classes=150),
-    auxiliary_head=dict(num_classes=150))
+    decode_head=dict(num_classes=2),
+    auxiliary_head=dict(num_classes=2))
 
 # AdamW optimizer, no weight decay for position embedding & layer norm
 # in backbone
@@ -40,5 +43,5 @@ param_scheduler = [
 
 # By default, models are trained on 8 GPUs with 2 images per GPU
 train_dataloader = dict(batch_size=2)
-val_dataloader = dict(batch_size=1)
+val_dataloader = dict(batch_size=2)
 test_dataloader = val_dataloader

@@ -1,6 +1,6 @@
 dataset_type = 'CoronaryDataset'
 data_root = 'data/cag'
-crop_size = (512, 512)
+crop_size = (518, 518)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations'),
@@ -17,9 +17,8 @@ train_pipeline = [
 test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
-        type='RandomResize',
+        type='Resize',
         scale=crop_size,
-        ratio_range=(1.0, 1.0),
         keep_ratio=True),
     # add loading annotation after ``Resize`` because ground truth
     # does not need to do resize data transform

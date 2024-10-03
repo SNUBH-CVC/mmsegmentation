@@ -35,3 +35,5 @@ https://mmengine.readthedocs.io/en/v0.8.4/common_usage/debug_tricks.html
 model_wrapper_cfg=dict(
     type='MMDistributedDataParallel', find_unused_parameters=True)
 ```
+
+`UperNet` decoder를 거친 후에 크기가 1/4이 되어 있는 것을 확인할 수 있는데 이는 `EncoderDecoder`의 `postprocess_result`를 통과해서 최종적으로 resize 된다.

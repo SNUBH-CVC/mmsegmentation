@@ -6,14 +6,13 @@ _base_ = [
 model_wrapper_cfg=dict(
     type='MMDistributedDataParallel', find_unused_parameters=True)
 
-crop_size = (518, 518)
 # dataset settings
 data_preprocessor = dict(
     type='SegDataPreProcessor',
-    mean=None,
-    std=None,
+    mean=[123.675, 116.28, 103.53],  
+    std=[58.395, 57.12, 57.375],
     bgr_to_rgb=True,
-    size=crop_size,
+    size=(518, 518),
     pad_val=0,
     seg_pad_val=255)
 

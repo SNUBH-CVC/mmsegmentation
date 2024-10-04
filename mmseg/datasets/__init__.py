@@ -3,6 +3,7 @@
 from .ade import ADE20KDataset
 from .basesegdataset import BaseCDDataset, BaseSegDataset
 from .bdd100k import BDD100KDataset
+from .cag import CoronaryDataset
 from .chase_db1 import ChaseDB1Dataset
 from .cityscapes import CityscapesDataset
 from .coco_stuff import COCOStuffDataset
@@ -11,7 +12,6 @@ from .dataset_wrappers import MultiImageMixDataset
 from .decathlon import DecathlonDataset
 from .drive import DRIVEDataset
 from .dsdl import DSDLSegDataset
-from .cag import CoronaryDataset
 from .hrf import HRFDataset
 from .hsi_drive import HSIDrive20Dataset
 from .isaid import iSAIDDataset
@@ -44,16 +44,16 @@ from .voc import PascalVOCDataset
 
 # yapf: enable
 __all__ = [
-    'BaseSegDataset', 'CoronaryDataset', 'BioMedical3DRandomCrop', 'BioMedical3DRandomFlip',
-    'CityscapesDataset', 'PascalVOCDataset', 'ADE20KDataset',
-    'PascalContextDataset', 'PascalContextDataset59', 'ChaseDB1Dataset',
-    'DRIVEDataset', 'HRFDataset', 'STAREDataset', 'DarkZurichDataset',
-    'NightDrivingDataset', 'COCOStuffDataset', 'LoveDADataset',
-    'MultiImageMixDataset', 'iSAIDDataset', 'ISPRSDataset', 'PotsdamDataset',
-    'LoadAnnotations', 'RandomCrop', 'SegRescale', 'PhotoMetricDistortion',
-    'RandomRotate', 'AdjustGamma', 'CLAHE', 'Rerange', 'RGB2Gray',
-    'RandomCutOut', 'RandomMosaic', 'PackSegInputs', 'ResizeToMultiple',
-    'LoadImageFromNDArray', 'LoadBiomedicalImageFromFile',
+    'BaseSegDataset', 'CoronaryDataset', 'BioMedical3DRandomCrop',
+    'BioMedical3DRandomFlip', 'CityscapesDataset', 'PascalVOCDataset',
+    'ADE20KDataset', 'PascalContextDataset', 'PascalContextDataset59',
+    'ChaseDB1Dataset', 'DRIVEDataset', 'HRFDataset', 'STAREDataset',
+    'DarkZurichDataset', 'NightDrivingDataset', 'COCOStuffDataset',
+    'LoveDADataset', 'MultiImageMixDataset', 'iSAIDDataset', 'ISPRSDataset',
+    'PotsdamDataset', 'LoadAnnotations', 'RandomCrop', 'SegRescale',
+    'PhotoMetricDistortion', 'RandomRotate', 'AdjustGamma', 'CLAHE', 'Rerange',
+    'RGB2Gray', 'RandomCutOut', 'RandomMosaic', 'PackSegInputs',
+    'ResizeToMultiple', 'LoadImageFromNDArray', 'LoadBiomedicalImageFromFile',
     'LoadBiomedicalAnnotation', 'LoadBiomedicalData', 'GenerateEdge',
     'DecathlonDataset', 'LIPDataset', 'ResizeShortestEdge',
     'BioMedicalGaussianNoise', 'BioMedicalGaussianBlur',

@@ -245,17 +245,6 @@ class VisionTransformer(BaseModule):
         self.out_origin = out_origin
         self.frozen_exclude = frozen_exclude
 
-        # VQGAN (512, 512) -> (4, 64, 64), patch_size: (8, 8)
-        # from taming.util import instantiate_from_config, custom_to_pil
-        # from omegaconf import OmegaConf
-        # vqgan_cfg = OmegaConf.load('./configs/vqgan/custom_vqgan.yaml')
-        # self.vqgan_encoder = instantiate_from_config(vqgan_cfg.model).encoder
-        # for param in self.vqgan_encoder.parameters():
-        #     param.requires_grad = False
-        # self.vqgan_encoder.eval()
-        # self.vqgan_embed_dims = 4
-        # self.linear_proj = nn.Linear(self.vqgan_embed_dims, embed_dims, bias=False)
-
         self.patch_embed = PatchEmbed(
             in_channels=in_channels,
             embed_dims=embed_dims,
@@ -457,11 +446,6 @@ class VisionTransformer(BaseModule):
         B = inputs.shape[0]
 
         x, hw_shape = self.patch_embed(inputs)
-        # print(x, hw_shape)
-        # x = self.vqgan_encoder(inputs)
-        # hw_shape = x.shape[2:]
-        # x = x.view(B, self.vqgan_embed_dims, -1).permute(0, 2, 1)  
-        # x = self.linear_proj(x)
 
         # stole cls_tokens impl from Phil Wang, thanks
         cls_tokens = self.cls_token.expand(B, -1, -1)

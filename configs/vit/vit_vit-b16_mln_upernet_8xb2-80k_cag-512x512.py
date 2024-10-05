@@ -4,12 +4,6 @@ _base_ = [
     '../_base_/schedules/schedule_80k.py'
 ]
 
-model_wrapper_cfg=dict(
-    type='MMDistributedDataParallel', find_unused_parameters=True)
-
-crop_size = (512, 512)
-data_preprocessor = dict(size=crop_size)
-
 model = dict(
     decode_head=dict(num_classes=2),
     auxiliary_head=dict(num_classes=2))
@@ -42,6 +36,6 @@ param_scheduler = [
 ]
 
 # By default, models are trained on 8 GPUs with 2 images per GPU
-train_dataloader = dict(batch_size=2)
+train_dataloader = dict(batch_size=8)
 val_dataloader = dict(batch_size=2)
 test_dataloader = val_dataloader

@@ -50,6 +50,6 @@ param_scheduler = [
 ]
 
 # By default, models are trained on 8 GPUs with 2 images per GPU
-train_dataloader = dict(batch_size=2)
+train_dataloader = dict(batch_size=8)
 val_dataloader = dict(batch_size=2)
 test_dataloader = val_dataloader

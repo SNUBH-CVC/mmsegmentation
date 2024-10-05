@@ -19,6 +19,13 @@ def parse_args():
     return parser.parse_args()
 
 
+def normalize(pixel_array):
+    """Normalize pixel values to 0-1 range."""
+    min_val = np.min(pixel_array)
+    max_val = np.max(pixel_array)
+    return (pixel_array - min_val) / (max_val - min_val)
+
+
 def run_single(dcm_path, result_path, img_save_dir, mask_save_dir):
     dcm = pydicom.dcmread(dcm_path)
     with open(result_path, "r") as f:
@@ -26,7 +33,7 @@ def run_single(dcm_path, result_path, img_save_dir, mask_save_dir):
     frame_number = data["frameNo"]
     img = dcm.pixel_array[frame_number]
     if img.dtype != np.uint8:
-        img = img.astype(np.uint8)
+        img = (normalize(img) * 255).astype(np.uint8)  
     contour = np.array(json.loads(data["editContour"]))
     mask = polygon2mask(img.shape[:2], contour[:, ::-1]).astype(np.uint8)
     token = data["token"]

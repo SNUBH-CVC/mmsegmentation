@@ -3,11 +3,12 @@
 sudo chown -R whikwon:whikwon /opt/conda
 pip install -r requirements/runtime.txt
 pip install -r requirements_snubhcvc.txt
-pip install mmcv==2.1.0 mmengine mmpretrain ftfy regex # mmpretrain은 pretrained model 다운로드 받을 때 필요
+pip install mmcv==2.1.0 mmengine mmpretrain ftfy regex scipy prettytable # mmpretrain은 pretrained model 다운로드 받을 때 필요
 python setup.py develop
 
 # download pretrained vit
 python tools/model_converters/vit2mmseg.py https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-vitjx/jx_vit_base_p16_224-80ecf9dd.pth pretrain/jx_vit_base_p16_224-80ecf9dd.pth 
+
 # download pretrained DINOv2
 wget https://dl.fbaipublicfiles.com/dinov2/dinov2_vitb14/dinov2_vitb14_pretrain.pth -P ./pretrain
 ```

@@ -41,6 +41,6 @@ USER $USERNAME
 
 RUN echo 'export PATH="$HOME/.local/bin:$PATH"' > $HOME/.bashrc
 
-RUN pip install mmcv==2.1.0 mmengine mmpretrain ftfy regex
+RUN pip install mmcv==2.1.0 mmengine mmpretrain ftfy regex scipy prettytable
 
 WORKDIR /workspaces

@@ -1,0 +1,5 @@
+[default]
+entity = snubhcvc
+project = mmsegmentation
+base_url = https://api.wandb.ai
+

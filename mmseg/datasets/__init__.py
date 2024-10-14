@@ -4,6 +4,7 @@ from .ade import ADE20KDataset
 from .basesegdataset import BaseCDDataset, BaseSegDataset
 from .bdd100k import BDD100KDataset
 from .cag import CoronaryDataset
+from .arcade import ARCADESyntaxDataset
 from .chase_db1 import ChaseDB1Dataset
 from .cityscapes import CityscapesDataset
 from .coco_stuff import COCOStuffDataset
@@ -44,7 +45,7 @@ from .voc import PascalVOCDataset
 
 # yapf: enable
 __all__ = [
-    'BaseSegDataset', 'CoronaryDataset', 'BioMedical3DRandomCrop',
+    'BaseSegDataset', 'CoronaryDataset', 'ARCADESyntaxDataset', 'BioMedical3DRandomCrop',
     'BioMedical3DRandomFlip', 'CityscapesDataset', 'PascalVOCDataset',
     'ADE20KDataset', 'PascalContextDataset', 'PascalContextDataset59',
     'ChaseDB1Dataset', 'DRIVEDataset', 'HRFDataset', 'STAREDataset',

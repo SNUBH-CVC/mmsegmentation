@@ -34,13 +34,14 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 RUN groupmod --gid $USER_GID $USERNAME \
     && usermod --uid $USER_UID --gid $USER_GID $USERNAME \
-    && chown -R $USER_UID:$USER_GID /opt/conda
+    && chown -R 777 /opt/conda
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME
 
 RUN echo 'export PATH="$HOME/.local/bin:$PATH"' > $HOME/.bashrc
 
-RUN pip install mmcv==2.1.0 mmengine mmpretrain ftfy regex scipy prettytable
+RUN pip install mmcv==2.1.0 mmengine mmpretrain ftfy regex scipy prettytable 
+RUN pip install wandb
 
 WORKDIR /workspaces

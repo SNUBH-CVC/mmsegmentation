@@ -1,6 +1,6 @@
 _base_ = [
     '../_base_/models/dinov2_upernet_vit-b14_ln_mln.py',
-    '../_base_/datasets/cag.py', '../_base_/default_runtime.py',
+    '../_base_/datasets/arcade_syntax.py', '../_base_/default_runtime.py',
     '../_base_/schedules/schedule_80k.py'
 ]
 model_wrapper_cfg=dict(

@@ -1,6 +1,6 @@
 dataset_type = 'CoronaryDataset'
 data_root = 'data/cag'
-crop_size = (518, 518)
+crop_size = (512, 512)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations'),

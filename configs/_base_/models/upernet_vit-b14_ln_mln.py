@@ -1,9 +1,8 @@
 # model settings
 norm_cfg = dict(type='SyncBN', requires_grad=True)
-# mean, std 같은 값 사용
 data_preprocessor = dict(
     type='SegDataPreProcessor',
-    mean=[123.675, 116.28, 103.53],  
+    mean=[123.675, 116.28, 103.53],
     std=[58.395, 57.12, 57.375],
     bgr_to_rgb=True,
     pad_val=0,
@@ -13,13 +12,25 @@ model = dict(
     type='EncoderDecoder',
     data_preprocessor=data_preprocessor,
     backbone=dict(
-        type='DinoVisionTransformer',
-        img_size=518,
+        type='VisionTransformer',
+        init_cfg=dict(type='Pretrained', checkpoint='pretrain/dinov2_vitb14_pretrain_mmseg.pth'),
+        img_size=(518, 518),
         patch_size=14,
-        output_cls_token=False,
+        in_channels=3,
+        embed_dims=768,
+        num_layers=12,
+        num_heads=12,
+        mlp_ratio=4,
         out_indices=(2, 5, 8, 11),
-        ckpt_path="./pretrain/dinov2_vitb14_pretrain.pth",
-    ),
+        qkv_bias=True,
+        drop_rate=0.0,
+        attn_drop_rate=0.0,
+        drop_path_rate=0.0,
+        with_cls_token=True,
+        norm_cfg=dict(type='LN', eps=1e-6),
+        act_cfg=dict(type='GELU'),
+        norm_eval=False,
+        interpolate_mode='bicubic'),
     neck=dict(
         type='MultiLevelNeck',
         in_channels=[768, 768, 768, 768],
@@ -32,13 +43,11 @@ model = dict(
         pool_scales=(1, 2, 3, 6),
         channels=512,
         dropout_ratio=0.1,
-        num_classes=2,
+        num_classes=19,
         norm_cfg=norm_cfg,
         align_corners=False,
-        loss_decode=[
-            dict(type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0),
-            # dict(type='DiceLoss', loss_name='loss_dice', loss_weight=3.0)
-        ]),  
+        loss_decode=dict(
+            type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0)),
     auxiliary_head=dict(
         type='FCNHead',
         in_channels=768,
@@ -47,13 +56,11 @@ model = dict(
         num_convs=1,
         concat_input=False,
         dropout_ratio=0.1,
-        num_classes=2,
+        num_classes=19,
         norm_cfg=norm_cfg,
         align_corners=False,
-        loss_decode=[
-            dict(type='CrossEntropyLoss', use_sigmoid=False, loss_weight=0.4),
-            # dict(type='DiceLoss', loss_name='loss_dice', loss_weight=3.0)
-        ]),  
+        loss_decode=dict(
+            type='CrossEntropyLoss', use_sigmoid=False, loss_weight=0.4)),
     # model training and testing settings
     train_cfg=dict(),
     test_cfg=dict(mode='whole'))  # yapf: disable
